@@ -5,22 +5,28 @@ import SortCountry from "./SortCountry";
 import SortRegion from "./SortRegion";
 import SortStatus from "./SortStatus";
 
-export default function BigCard(){
-    const countries = useCountry();
-    return(
-        <div className="flex flex-col  bg-[#1C1D1F] w-full border-y-[1px] border-[#272B2E]">
-            <div className="flex items-center p-2">
-                <h1 className="text-[#6B717D] text-[14px]">Found {countries?.length} countries</h1>
-                <div className="flex justify-center items-center bg-[#282A31] rounded-lg p-0.5 ml-auto gap-x-2">
-                    <Search></Search>
-                    <input className="bg-[#282A31] placeholder:text-[#6B717D] placeholder:text-[11px] pb-1 text-[#6B717D] outline-none" placeholder="Search by Name, Region, Subregion"></input>
-                </div>
-            </div>
+export default function BigCard() {
+  const { filteredCountries } = useCountry(); // Get the sorted countries from context
 
-            <SortCountry></SortCountry>
-            <SortRegion></SortRegion>
-            <SortStatus></SortStatus>
-            <CountryTable></CountryTable>
+  return (
+    <div className="flex flex-col bg-[#1C1D1F] w-full border-y-[1px] border-[#272B2E]">
+      <div className="flex items-center p-2">
+        <h1 className="text-[#6B717D] text-[14px]">
+          Found {filteredCountries?.length} countries
+        </h1>
+        <div className="flex justify-center items-center bg-[#282A31] rounded-lg p-0.5 ml-auto gap-x-2">
+          <Search />
+          <input
+            className="bg-[#282A31] placeholder:text-[#6B717D] placeholder:text-[11px] pb-1 text-[#6B717D] outline-none"
+            placeholder="Search by Name, Region, Subregion"
+          />
         </div>
-    );
+      </div>
+
+      <SortCountry />
+      <SortRegion />
+      <SortStatus />
+      <CountryTable /> {/* Uses the sorted countries */}
+    </div>
+  );
 }

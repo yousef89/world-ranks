@@ -9,11 +9,7 @@ import {
 import { useCountry } from "@/countryContext";
 
 export default function CountryTable() {
-  const countries = useCountry();
-
-  if (!countries || countries.length === 0) {
-    return <p>Loading country data...</p>;
-  }
+  const { filteredCountries } = useCountry(); // Use filtered countries instead of all countries
 
   return (
     <div className="px-4">
@@ -27,7 +23,7 @@ export default function CountryTable() {
           </TableRow>
         </TableHeader>
         <TableBody className="text-[#D0D5D9]">
-          {countries.map((country) => (
+          {filteredCountries.map((country) => (
             <TableRow key={country.name.common}>
               <TableCell>
                 <img
