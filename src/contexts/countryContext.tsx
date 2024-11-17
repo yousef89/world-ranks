@@ -3,7 +3,7 @@ import Fuse from "fuse.js";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the type for the country data
-interface CountryTypes {
+export interface CountryTypes {
   flags: { svg: string };
   name: { common: string };
   population: number;

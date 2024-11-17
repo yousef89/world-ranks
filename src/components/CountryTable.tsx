@@ -7,9 +7,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useCountry } from "@/contexts/countryContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CountryTable() {
   const { filteredCountries } = useCountry(); // Use filtered countries instead of all countries
+  const navigate = useNavigate(); // Move useNavigate hook to the top of the component
+
+  const handleRowClick = (countryName: string) => {
+    navigate(`/country/${countryName}`); // Navigate to the country's page
+  };
 
   return (
     <div className="px-4">
@@ -24,7 +30,11 @@ export default function CountryTable() {
         </TableHeader>
         <TableBody className="text-[#D0D5D9]">
           {filteredCountries.map((country) => (
-            <TableRow key={country.name.common}>
+            <TableRow
+              key={country.name.common}
+              onClick={() => handleRowClick(country.name.common)}
+              className="cursor-pointer"
+            >
               <TableCell>
                 <img
                   src={country.flags.svg}

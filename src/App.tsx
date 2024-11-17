@@ -1,5 +1,6 @@
 import BigCard from "./components/bigCard";
 import CountryProvider from "./contexts/countryContext";
+import CountryDetail from "./countryDetails/countryDetail";
 import Logo from "./SVGs/logo";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
@@ -13,6 +14,7 @@ function App() {
           </div>
           <Routes>
             <Route path="/" element={<BigCard />} />
+            <Route path="/country/:countryName" element={<CountryDetail />} />
           </Routes>
         </div>
       </Router>
