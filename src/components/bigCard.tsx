@@ -11,7 +11,7 @@ export default function BigCard() {
   return (
     <div className="flex flex-col bg-[#1C1D1F] w-full border-y-[1px] border-[#272B2E]">
       <div className="flex items-center p-2">
-        <h1 className="text-[#6B717D] text-[14px]">
+        <h1 className="text-[#6B717D] text-[13px]">
           Found {filteredCountries?.length} countries
         </h1>
         <div className="flex justify-center items-center bg-[#282A31] rounded-lg p-0.5 ml-auto gap-x-2">

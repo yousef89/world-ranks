@@ -1,5 +1,6 @@
 import { useCountry } from "@/contexts/countryContext";
 import { useParams } from "react-router-dom";
+import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 
 export default function CountryDetail() {
   const { countryName } = useParams(); // Get country name from URL
@@ -7,6 +8,7 @@ export default function CountryDetail() {
   const country = countries.find(
     (country) => country.name.common === countryName
   );
+  console.log(countries);
 
   // Handle case when country is not found
   if (!country) {
@@ -14,7 +16,7 @@ export default function CountryDetail() {
   }
 
   return (
-    <div className="flex flex-col  items-center bg-[#1C1D1F] w-full border-y-[1px] border-[#272B2E] p-4 ">
+    <div className="flex flex-col items-center bg-[#1C1D1F] w-full  border-[#272B2E] p-4 ">
       <img
         src={country.flags.svg}
         alt={`Flag of ${country.name.common}`}
@@ -36,15 +38,38 @@ export default function CountryDetail() {
         </p>
       </div>
 
-      <p className="text-[#D0D5D9]">
-        <strong>Continents:</strong> {country.continents.join(", ")}
-      </p>
-      <p className="text-[#D0D5D9]">
-        <strong>Independent:</strong> {country.independent ? "Yes" : "No"}
-      </p>
-      <p className="text-[#D0D5D9]">
-        <strong>UN Member:</strong> {country.unMember ? "Yes" : "No"}
-      </p>
+      <Table>
+        <TableBody className="text-[#D0D5D9]">
+          <TableRow>
+            <TableCell>Capital</TableCell>
+            <TableCell className="text-right">{country.capital}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Subregion</TableCell>
+            <TableCell className="text-right">{country.subregion}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Language</TableCell>
+            <TableCell className="text-right">
+              {Object.values(country.languages).join(", ")}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Currency</TableCell>
+            <TableCell className="text-right">
+            {Object.values(country.currencies)
+          .map((currency) => currency.name)  // Get the currency names
+          .join(", ")}
+            </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Continents</TableCell>
+            <TableCell className="text-right">
+              {country.continents.join(", ")}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+      </Table>
     </div>
   );
 }

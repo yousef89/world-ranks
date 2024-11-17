@@ -3,7 +3,7 @@ import Fuse from "fuse.js";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the type for the country data
-export interface CountryTypes {
+interface CountryTypes {
   flags: { svg: string };
   name: { common: string };
   population: number;
@@ -11,6 +11,10 @@ export interface CountryTypes {
   continents: string[];
   independent: boolean;
   unMember: boolean;
+  capital: string[]; // Capital is an array of strings
+  subregion: string;
+  languages: { [key: string]: string }; // Languages are an object with key-value pairs
+  currencies: { [key: string]: { name: string; symbol: string } }; // Currencies are an object with key-value pairs
 }
 
 // Define the context value type
