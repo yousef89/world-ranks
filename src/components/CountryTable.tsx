@@ -6,7 +6,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useCountry } from "@/countryContext";
+import { useCountry } from "@/contexts/countryContext";
 
 export default function CountryTable() {
   const { filteredCountries } = useCountry(); // Use filtered countries instead of all countries

@@ -1,6 +1,6 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { useCountry } from "@/countryContext";
-import { useState, useEffect } from "react";
+import { useCountry } from "@/contexts/countryContext";
+import { useState } from "react";
 
 export default function SortStatus() {
   const [isIndependent, setIsIndependent] = useState<boolean>(false);
@@ -9,22 +9,16 @@ export default function SortStatus() {
 
   // Handle change for "Independent" checkbox
   function handleIndependent() {
-    setIsIndependent((prev) => !prev); // Toggle the state on click
+    const newValue = !isIndependent; // Calculate new state
+    setIsIndependent(newValue);
+    independentCountries(newValue); // Pass the new value
   }
 
-  // Handle change for "UN member" checkbox
   function handleUn() {
-    setIsUn((prev) => !prev); // Toggle the state on click
+    const newValue = !isUn; // Calculate new state
+    setIsUn(newValue);
+    unMemberCountries(newValue); // Pass the new value
   }
-
-  // Trigger filtering when checkbox states change
-  useEffect(() => {
-    independentCountries(isIndependent); // Call when "Independent" checkbox changes
-  }, [isIndependent, independentCountries]);
-
-  useEffect(() => {
-    unMemberCountries(isUn); // Call when "UN member" checkbox changes
-  }, [isUn, unMemberCountries]);
 
   return (
     <div className="flex flex-col space-y-2 px-4 pt-5">

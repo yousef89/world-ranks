@@ -1,4 +1,4 @@
-import { useCountry } from "@/countryContext";
+import { useCountry } from "@/contexts/countryContext";
 import Search from "../SVGs/search";
 import CountryTable from "./CountryTable";
 import SortCountry from "./SortCountry";
@@ -6,7 +6,7 @@ import SortRegion from "./SortRegion";
 import SortStatus from "./SortStatus";
 
 export default function BigCard() {
-  const { filteredCountries } = useCountry(); // Get the sorted countries from context
+  const { filteredCountries, searchCountries } = useCountry(); // Get the sorted countries from context
 
   return (
     <div className="flex flex-col bg-[#1C1D1F] w-full border-y-[1px] border-[#272B2E]">
@@ -18,11 +18,11 @@ export default function BigCard() {
           <Search />
           <input
             className="bg-[#282A31] placeholder:text-[#6B717D] placeholder:text-[11px] pb-1 text-[#6B717D] outline-none"
-            placeholder="Search by Name, Region, Subregion"
+            placeholder="Search by Name, Region"
+            onChange={(e) => searchCountries(e.target.value)}
           />
         </div>
       </div>
-
       <SortCountry />
       <SortRegion />
       <SortStatus />

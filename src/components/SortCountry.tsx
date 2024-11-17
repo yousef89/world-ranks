@@ -6,7 +6,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useCountry } from "@/countryContext";
+import { useCountry } from "@/contexts/countryContext";
 
 const SortCountry: React.FC = () => {
   const { sortData } = useCountry();

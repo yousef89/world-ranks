@@ -1,17 +1,14 @@
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group";
-import { useCountry } from "@/countryContext";
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { useCountry } from "@/contexts/countryContext";
 
 export default function SortRegion() {
   const regions = [
-    'South America', 
-    'North America', 
-    'Africa', 
-    'Asia', 
-    'Europe', 
-    'Oceania'
+    "South America",
+    "North America",
+    "Africa",
+    "Asia",
+    "Europe",
+    "Oceania",
   ];
 
   const { filterData } = useCountry();
@@ -27,7 +24,7 @@ export default function SortRegion() {
       <ToggleGroup type="single" onValueChange={handleToggleChange}>
         <div className="flex gap-2 w-[100%]">
           {regions.map((region) => (
-            <ToggleGroupItem 
+            <ToggleGroupItem
               key={region}
               value={region} // Set the value to the region name
               aria-label={`Toggle ${region}`} // Accessible label for the toggle
