@@ -8,7 +8,6 @@ export default function CountryDetail() {
   const country = countries.find(
     (country) => country.name.common === countryName
   );
-  console.log(countries);
 
   // Handle case when country is not found
   if (!country) {

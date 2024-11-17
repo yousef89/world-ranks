@@ -6,11 +6,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useCountry } from "@/contexts/countryContext";
 import { useNavigate } from "react-router-dom";
 
-export default function CountryTable() {
-  const { filteredCountries } = useCountry(); // Use filtered countries instead of all countries
+// Accept the 'countries' prop for paginated data
+export default function CountryTable({ countries }: { countries: any[] }) {
   const navigate = useNavigate(); // Move useNavigate hook to the top of the component
 
   const handleRowClick = (countryName: string) => {
@@ -29,7 +28,7 @@ export default function CountryTable() {
           </TableRow>
         </TableHeader>
         <TableBody className="text-[#D0D5D9]">
-          {filteredCountries.map((country) => (
+          {countries.map((country) => (
             <TableRow
               key={country.name.common}
               onClick={() => handleRowClick(country.name.common)}

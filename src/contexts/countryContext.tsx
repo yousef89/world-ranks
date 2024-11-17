@@ -1,6 +1,6 @@
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Fuse from "fuse.js";
-import React, { createContext, useContext, useEffect, useState } from "react";
 
 // Define the type for the country data
 interface CountryTypes {
@@ -25,7 +25,11 @@ interface CountryContextType {
   filterData: (filterBy: string | null) => void;
   independentCountries: (x: boolean) => void;
   unMemberCountries: (x: boolean) => void;
-  searchCountries: (searchTerm: string) => void; // Add for search
+  searchCountries: (searchTerm: string) => void;
+  pageList: CountryTypes[];
+  currentPage: number;
+  itemsPerPage: number;
+  setCurrentPage: (page: number) => void; // Function to update the current page
 }
 
 const CountryContext = createContext<CountryContextType | undefined>(undefined);
@@ -45,6 +49,9 @@ export default function CountryProvider({
 }) {
   const [data, setData] = useState<CountryTypes[]>([]);
   const [filteredData, setFilteredData] = useState<CountryTypes[]>([]);
+  const [pageList, setPageList] = useState<CountryTypes[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10; // Number of items per page
   const [regionFilter, setRegionFilter] = useState<string | null>(null);
   const [independentFilter, setIndependentFilter] = useState<boolean | null>(
     null
@@ -58,6 +65,7 @@ export default function CountryProvider({
         const response = await axios.get("https://restcountries.com/v3.1/all");
         setData(response.data);
         setFilteredData(response.data);
+        setPageList(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -93,13 +101,14 @@ export default function CountryProvider({
     // Apply search (fuzzy)
     if (searchTerm) {
       const fuse = new Fuse(updatedData, {
-        keys: ["name.common" , "continents"], // Add more keys if needed
+        keys: ["name.common", "continents"], // Add more keys if needed
         threshold: 0.1, // Adjust for strictness
       });
       updatedData = fuse.search(searchTerm).map((result) => result.item);
     }
 
     setFilteredData(updatedData);
+    setPageList(updatedData); // Set filtered data to pageList
   }
 
   // Sorting function
@@ -113,6 +122,7 @@ export default function CountryProvider({
       sortedData.sort((a, b) => b.area - a.area);
     }
     setFilteredData(sortedData);
+    setPageList(sortedData); // Update the pageList with sorted data
   }
 
   // Filter by region
@@ -140,6 +150,8 @@ export default function CountryProvider({
     applyFilters();
   }, [regionFilter, independentFilter, unMemberFilter, searchTerm]);
 
+
+
   return (
     <CountryContext.Provider
       value={{
@@ -150,6 +162,10 @@ export default function CountryProvider({
         independentCountries,
         unMemberCountries,
         searchCountries,
+        pageList,
+        currentPage,
+        itemsPerPage,
+        setCurrentPage, // Provide function to update currentPage
       }}
     >
       {children}
