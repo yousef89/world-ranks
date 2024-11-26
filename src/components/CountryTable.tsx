@@ -17,17 +17,17 @@ export default function CountryTable({ countries }: { countries: any[] }) {
   };
 
   return (
-    <div className="px-4">
+    <div className="px-4 w-[97%]">
       <Table>
         <TableHeader>
-          <TableRow className="text-[11px]">
+          <TableRow className="text-[11px] desktop:text-[16px]">
             <TableHead>Flag</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Population</TableHead>
             <TableHead>Area (km²)</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="text-[#D0D5D9]">
+        <TableBody className="text-[#D0D5D9] desktop:text-[18px]">
           {countries.map((country) => (
             <TableRow
               key={country.name.common}
@@ -38,6 +38,7 @@ export default function CountryTable({ countries }: { countries: any[] }) {
                 <img
                   src={country.flags.svg}
                   alt={`Flag of ${country.name.common}`}
+                  className=" w-[70px]"
                 />
               </TableCell>
               <TableCell>{country.name.common}</TableCell>

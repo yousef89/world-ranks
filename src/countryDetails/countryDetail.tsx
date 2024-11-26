@@ -15,7 +15,7 @@ export default function CountryDetail() {
   }
 
   return (
-    <div className="flex flex-col items-center bg-[#1C1D1F] w-full  border-[#272B2E] p-4 ">
+    <div className="flex flex-col items-center bg-[#1C1D1F] w-full  border-[#272B2E] p-4 max-w-[60%]">
       <img
         src={country.flags.svg}
         alt={`Flag of ${country.name.common}`}

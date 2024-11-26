@@ -16,13 +16,13 @@ const SortCountry: React.FC = () => {
   };
 
   return (
-    <div className="px-4 flex flex-col gap-y-2 pt-4">
-      <h1 className="text-[#6B717D] text-[10px]">Sort by</h1>
+    <div className="px-4 flex flex-col gap-y-2 pt-4 max-w-[400px]">
+      <h1 className="text-[#6B717D] text-[10px] desktop:text-[13px]">Sort by</h1>
       <Select onValueChange={handleSortChange}>
-        <SelectTrigger className="text-[#BDC1C3] border-[#272B2E] text-[12px] h-7">
+        <SelectTrigger className="text-[#BDC1C3] border-[#272B2E] text-[12px] desktop:text-[16px] h-7">
           <SelectValue placeholder="Choose" />
         </SelectTrigger>
-        <SelectContent>
+        <SelectContent className="desktop:text-[16px]">
           <SelectItem value="Name">Name</SelectItem>
           <SelectItem value="Population">Population</SelectItem>
           <SelectItem value="Area">Area</SelectItem>

@@ -15,7 +15,7 @@ import {
     onPageChange: (page: number) => void;
   }
   
-  export default function PaginationCountry({
+  export default function PaginationDesktop({
     totalItems,
     itemsPerPage,
     currentPage,
@@ -28,7 +28,7 @@ import {
         onPageChange(page);
       }
     };
-  
+
     const isPrevDisabled = currentPage === 1;
     const isNextDisabled = currentPage === totalPages;
   
@@ -52,7 +52,7 @@ import {
                   e.preventDefault();
                   if (!isPrevDisabled) handlePageChange(currentPage - 1);
                 }}
-                className={`text-[10px] ${isPrevDisabled ? "cursor-not-allowed opacity-50" : ""}`}
+                className={`text-[12px] ${isPrevDisabled ? "cursor-not-allowed opacity-50" : ""}`}
               />
             </PaginationItem>
   
@@ -65,14 +65,14 @@ import {
                       e.preventDefault();
                       handlePageChange(1);
                     }}
-                    className="text-[10px]"
+                    className="text-[12px]"
                   >
                     1
                   </PaginationLink>
                 </PaginationItem>
                 {startPage > 2 && (
                   <PaginationItem>
-                    <PaginationEllipsis className="text-[10px]" />
+                    <PaginationEllipsis className="text-[12px]" />
                   </PaginationItem>
                 )}
               </>
@@ -89,7 +89,7 @@ import {
                       e.preventDefault();
                       handlePageChange(page);
                     }}
-                    className="text-[10px]"
+                    className="text-[12px]"
                   >
                     {page}
                   </PaginationLink>
@@ -101,7 +101,7 @@ import {
               <>
                 {endPage < totalPages - 1 && (
                   <PaginationItem>
-                    <PaginationEllipsis className="text-[10px]" />
+                    <PaginationEllipsis className="text-[12px]" />
                   </PaginationItem>
                 )}
                 <PaginationItem>
@@ -111,7 +111,7 @@ import {
                       e.preventDefault();
                       handlePageChange(totalPages);
                     }}
-                    className="text-[10px]"
+                    className="text-[12px]"
                   >
                     {totalPages}
                   </PaginationLink>
@@ -126,7 +126,7 @@ import {
                   e.preventDefault();
                   if (!isNextDisabled) handlePageChange(currentPage + 1);
                 }}
-                className={`text-[10px] ${isNextDisabled ? "cursor-not-allowed opacity-50" : ""}`}
+                className={`text-[12px] ${isNextDisabled ? "cursor-not-allowed opacity-50" : ""}`}
               />
             </PaginationItem>
           </PaginationContent>
