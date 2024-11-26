@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
 import Fuse from "fuse.js";
 
 // Define the type for the country data
