@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Fuse from "fuse.js";
 
+
 // Define the type for the country data
 interface CountryTypes {
   flags: { svg: string };
@@ -62,7 +63,7 @@ export default function CountryProvider({
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get("https://restcountries.com/v3.1/all");
+        const response = await axios.get(import.meta.env.VITE_API_URL);
         setData(response.data);
         setFilteredData(response.data);
         setPageList(response.data);
