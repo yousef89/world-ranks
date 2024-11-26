@@ -61,6 +61,7 @@ export default function CountryProvider({
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_API_URL); // Ensure the value is correct
     async function fetchData() {
       try {
         const response = await axios.get(import.meta.env.VITE_API_URL);
