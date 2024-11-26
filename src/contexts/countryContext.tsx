@@ -2,7 +2,6 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Fuse from "fuse.js";
 
-
 // Define the type for the country data
 interface CountryTypes {
   flags: { svg: string };
@@ -63,19 +62,11 @@ export default function CountryProvider({
   useEffect(() => {
     console.log(import.meta.env.VITE_API_URL); // Ensure the value is correct
     async function fetchData() {
-      try {
-        const response = await axios.get(import.meta.env.VITE_API_URL, {
-          timeout: 10000, // Set timeout to 10 seconds (adjust as necessary)
-          headers: {
-            "Accept": "application/json",
-          },
-        });
-        setData(response.data);
-        setFilteredData(response.data);
-        setPageList(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+      const response = await fetch(import.meta.env.VITE_API_URL);
+      const data = await response.json(); // Await the JSON conversion
+      setData(data);
+      setFilteredData(data); // Set filtered data directly after fetching
+      setPageList(data);
     }
     fetchData();
   }, []);
@@ -156,8 +147,6 @@ export default function CountryProvider({
   useEffect(() => {
     applyFilters();
   }, [regionFilter, independentFilter, unMemberFilter, searchTerm]);
-
-
 
   return (
     <CountryContext.Provider
