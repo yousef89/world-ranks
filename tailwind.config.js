@@ -5,7 +5,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        "planet-image": "url('./src/assets/planet.jpg')",
+        "planet-image": "url('/assets/planet.jpg')",
       },
       borderRadius: {
         lg: "var(--radius)",
