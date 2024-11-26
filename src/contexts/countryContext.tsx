@@ -64,7 +64,12 @@ export default function CountryProvider({
     console.log(import.meta.env.VITE_API_URL); // Ensure the value is correct
     async function fetchData() {
       try {
-        const response = await axios.get(import.meta.env.VITE_API_URL);
+        const response = await axios.get(import.meta.env.VITE_API_URL, {
+          timeout: 10000, // Set timeout to 10 seconds (adjust as necessary)
+          headers: {
+            "Accept": "application/json",
+          },
+        });
         setData(response.data);
         setFilteredData(response.data);
         setPageList(response.data);
