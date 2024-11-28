@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Fuse from "fuse.js";
+import axios from "axios";
+const apiUrl = `${import.meta.env.VITE_BASE_URL}`;
 
 // Define the type for the country data
 interface CountryTypes {
@@ -59,13 +61,12 @@ export default function CountryProvider({
   const [searchTerm, setSearchTerm] = useState<string>("");
 
   useEffect(() => {
-    console.log(import.meta.env.VITE_API_URL); // Ensure the value is correct
+    console.log(apiUrl); // Ensure the value is correct
     async function fetchData() {
-      const response = await fetch(import.meta.env.VITE_API_URL);
-      const data = await response.json(); // Await the JSON conversion
-      setData(data);
-      setFilteredData(data); // Set filtered data directly after fetching
-      setPageList(data);
+      const response = await axios.get(import.meta.env.VITE_API_URL);
+      setData(response.data);
+      setFilteredData(response.data); // Set filtered data directly after fetching
+      setPageList(response.data);
     }
     fetchData();
   }, []);
