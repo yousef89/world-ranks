@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import Fuse from "fuse.js";
 import axios from "axios";
-const apiUrl = `${import.meta.env.VITE_BASE_URL}`;
+
 
 // Define the type for the country data
 interface CountryTypes {
